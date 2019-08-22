@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/ray-jonathan/Rough-Draft-Backend#readme",
   "dependencies": {
+    "axios": "^0.19.0",
     "express": "^4.17.1"
   },
   "devDependencies": {
