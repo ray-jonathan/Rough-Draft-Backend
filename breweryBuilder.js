@@ -16,15 +16,18 @@ require('dotenv').config();
 //   }
 //   return;
 // };
-module.exports = (addressParts) => {
+module.exports = async (addressParts) => {
   const url = `https://geocoder.api.here.com/6.2/geocode.json?app_id=${process.env.HERE_APP_ID}&app_code=${process.env.HERE_APP_CODE}&searchtext=${addressParts}`
-  const result = axios.get(url);
-  // const {data: {View}} = axios.get(url);
-  // const {Result}= View[0];
-  // const {Location} = Result[0];
-  // const {NavigationPosition, Address : {HouseNumber, Street, City, State}} = Location;
-  // const {Latitude, Longitude} = NavigationPosition[0];
-  // return {HouseNumber, Street, City, State, Latitude, Longitude};
-  return result;
+  try{
+    const {data : {Response : {View : [{Result : [{Location:{DisplayPosition : {Latitude, Longitude}, Address : {HouseNumber, Street, City, State, PostalCode}}}]}]}}} = await axios.get(url);
+    return {HouseNumber, Street, City, State, PostalCode, Latitude, Longitude};
+    // const {data : {Response : {View}}} = await axios.get(url);
+    // return View[0];
+  }
+  catch(err){
+    // console.log(err);
+    return null;
+  }
 }
+
 
