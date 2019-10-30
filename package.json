@@ -1,29 +1,38 @@
 {
-  "name": "roughdraft",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js --ignore '*.json'"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ray-jonathan/Rough-Draft-Backend.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ray-jonathan/Rough-Draft-Backend/issues"
-  },
-  "homepage": "https://github.com/ray-jonathan/Rough-Draft-Backend#readme",
-  "dependencies": {
-    "axios": "^0.19.0",
-    "dotenv": "^8.1.0",
-    "express": "^4.17.1"
-  },
-  "devDependencies": {
-    "nodemon": "^1.19.1"
-  }
+	"name": "roughdraft",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"db:create": "createdb roughdraft",
+		"db:init": "psql -f schema.sql roughdraft && psql -f seed.sql roughdraft",
+		"db:destroy": "dropdb roughdraft",
+		"db:reset": "npm run db:destroy; npm run db:create && npm run db:init",
+		"merged": "npm i && npm run db:reset && npm run dev",
+		"dev": "nodemon index.js --ignore '*.json'"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ray-jonathan/Rough-Draft-Backend.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/ray-jonathan/Rough-Draft-Backend/issues"
+	},
+	"homepage": "https://github.com/ray-jonathan/Rough-Draft-Backend#readme",
+	"dependencies": {
+		"axios": "^0.19.0",
+		"btoa": "^1.2.1",
+		"cheerio": "^1.0.0-rc.3",
+		"cors": "^2.8.5",
+		"dotenv": "^8.1.0",
+		"express": "^4.17.1",
+		"image-to-base64": "^2.0.1"
+	},
+	"devDependencies": {
+		"nodemon": "^1.19.1"
+	}
 }
